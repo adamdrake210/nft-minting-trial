@@ -6,7 +6,7 @@ const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 const web3 = createAlchemyWeb3(alchemyKey);
 
 const contractABI = require("../contract-abi.json");
-const contractAddress = "0x4C4a07F737Bf57F6632B6CAB089B78f62385aCaE";
+const contractAddress = "0x5428804a66822a3184bc07caddd56f28fec31187";
 
 export const mintNFT = async (url, name, description) => {
   //error handling
@@ -32,7 +32,10 @@ export const mintNFT = async (url, name, description) => {
   }
   const tokenURI = pinataResponse.pinataUrl;
 
-  window.contract = await new web3.eth.Contract(contractABI, contractAddress);
+  window.contract = await new web3.eth.Contract(
+    contractABI.abi,
+    contractAddress
+  );
 
   //set up your Ethereum transaction
   const transactionParameters = {
